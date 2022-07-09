@@ -8,17 +8,18 @@ export const Container = styled.View`
 
 export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
   flex: 1;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
 `;
 
-export const Logo = styled.Image`
-  margin-bottom: 40px;
-`;
-
-export const PressableTextArea = styled.Pressable`
+export const Header = styled.View`
   width: 100%;
-  justify-content: center;
-  flex-direction: row;
-  margin-top: 15px;
+`;
+
+export const ViewInputArea = styled.View`
+  width: 100%;
+`;
+
+export const Footer = styled.View`
+  width: 100%;
+  align-items: center;
 `;
