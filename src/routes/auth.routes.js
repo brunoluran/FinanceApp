@@ -7,13 +7,26 @@ const AuthStack = createNativeStackNavigator();
 
 export default function AuthRoutes() {
   return (
-    <AuthStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <AuthStack.Screen name='SignIn' component={SignIn} />
-      <AuthStack.Screen name='SignUp' component={SignUp} />
+    <AuthStack.Navigator>
+      <AuthStack.Screen
+        name='SignIn'
+        component={SignIn}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <AuthStack.Screen
+        name='SignUp'
+        component={SignUp}
+        options={{
+          headerStyle: {
+            backgroundColor: '#202020',
+          },
+          headerTintColor: '#fff',
+          headerBackTitleVisible: false,
+          headerTitle: '',
+        }}
+      />
     </AuthStack.Navigator>
   );
 }

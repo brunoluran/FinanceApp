@@ -8,18 +8,5 @@ export const Container = styled.View`
 
 export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
   flex: 1;
-  justify-content: space-between;
-`;
-
-export const Header = styled.View`
-  width: 100%;
-`;
-
-export const ViewInputArea = styled.View`
-  width: 100%;
-`;
-
-export const Footer = styled.View`
-  width: 100%;
-  align-items: center;
+  justify-content: center;
 `;

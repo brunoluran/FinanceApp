@@ -1,19 +1,25 @@
 import { Container, KeyboardAvoidingView, Logo, PressableTextArea } from './style';
 import { useTheme } from 'styled-components';
 import { Platform } from 'react-native';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../../contexts/auth';
 
 import Input from '../../components/Input';
-import Pressable from '../../components/Button';
+import Pressable from '../../components/Pressable';
 import Text from '../../components/Text';
 
 export default function SignIn() {
+  const { signIn } = useContext(AuthContext);
   const theme = useTheme();
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  function handleSignIn() {
+    signIn(email, password);
+  }
 
   return (
     <Container>
@@ -35,7 +41,7 @@ export default function SignIn() {
           autoCapitalize='none'
           secureTextEntry={true}
         />
-        <Pressable text={'Acessar'} />
+        <Pressable text={'Acessar'} onPress={handleSignIn} />
         <PressableTextArea onPress={() => navigation.navigate('SignUp')}>
           <Text size={14}>Não tem uma conta?</Text>
           <Text size={14} bold color={theme.color.primary}>

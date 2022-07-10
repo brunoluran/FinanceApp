@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+import AuthProvider from './src/contexts/auth';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import Routes from './src/routes';
@@ -12,8 +13,10 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <StatusBar backgroundColor={'transparent'} barStyle='light-content' translucent={true} />
-        <Routes />
+        <AuthProvider>
+          <StatusBar backgroundColor={'transparent'} barStyle='light-content' translucent={true} />
+          <Routes />
+        </AuthProvider>
       </NavigationContainer>
     </ThemeProvider>
   );
