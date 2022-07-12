@@ -1,10 +1,11 @@
-import styled from 'styled-components/native';
-import { TextInputMask } from 'react-native-masked-text';
+import styled from "styled-components/native";
+import { TextInputMask } from "react-native-masked-text";
 
 const TextInput = styled(TextInputMask).attrs({
-  placeholderTextColor: '#909090',
+  placeholderTextColor: "#909090",
 })`
   width: 100%;
+  height: 60px;
   border-radius: 10px;
   background-color: #000;
   margin: 5px 0;

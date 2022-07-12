@@ -1,12 +1,12 @@
-import 'react-native-gesture-handler';
-import AuthProvider from './src/contexts/auth';
-import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'react-native';
-import Routes from './src/routes';
-import { ThemeProvider } from 'styled-components';
-import theme from './src/theme';
+import "react-native-gesture-handler";
+import AuthProvider from "./src/contexts/auth";
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "react-native";
+import Routes from "./src/routes";
+import { ThemeProvider } from "styled-components";
+import theme from "./src/theme";
 
-import { LogBox } from 'react-native';
+import { LogBox } from "react-native";
 LogBox.ignoreAllLogs(true);
 
 export default function App() {
@@ -14,7 +14,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <AuthProvider>
-          <StatusBar backgroundColor={'transparent'} barStyle='light-content' translucent={true} />
+          <StatusBar backgroundColor={"transparent"} barStyle="light-content" translucent={true} />
           <Routes />
         </AuthProvider>
       </NavigationContainer>

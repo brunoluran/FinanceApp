@@ -1,11 +1,12 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 const TextInput = styled.TextInput.attrs({
-  placeholderTextColor: '#909090',
+  placeholderTextColor: "#909090",
 })`
   width: 100%;
+  height: 60px;
   border-radius: 10px;
-  background-color: ${(props) => (props.bgColor ? `${props.bgColor}` : '#000')};
+  background-color: ${(props) => (props.bgColor ? `${props.bgColor}` : "#000")};
   margin: 5px 0;
   padding: 10px;
   color: #fff;
