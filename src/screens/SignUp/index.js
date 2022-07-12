@@ -1,6 +1,6 @@
 import { Container, PressableView, KeyboardAvoidingView } from "./style";
 import { useTheme } from "styled-components";
-import { Platform, Keyboard } from "react-native";
+import { Platform, Keyboard, View, ActivityIndicator } from "react-native";
 import { useState, useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../contexts/auth";
@@ -10,7 +10,7 @@ import MaskedInput from "../../components/MaskedInput";
 import Pressable from "../../components/Pressable";
 
 export default function SignUp() {
-  const { signUp } = useContext(AuthContext);
+  const { signUp, loadingAuth } = useContext(AuthContext);
   const theme = useTheme();
   const navigation = useNavigation();
 
@@ -52,7 +52,10 @@ export default function SignUp() {
             secureTextEntry={true}
           />
 
-          <Pressable text={"Cadastrar"} onPress={handleSignUp} />
+          <Pressable
+            text={loadingAuth ? <ActivityIndicator color="#fff" size={25} /> : "Cadastrar"}
+            onPress={handleSignUp}
+          />
         </KeyboardAvoidingView>
       </Container>
     </PressableView>

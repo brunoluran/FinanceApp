@@ -2,10 +2,10 @@ import styled from "styled-components/native";
 import Feather from "@expo/vector-icons/Feather";
 import Text from "../../components/Text";
 
-const View = styled.View`
+const PressableView = styled.Pressable`
   width: 100%;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.07);
   margin: 0 0 2px;
 `;
 
@@ -20,9 +20,9 @@ const IconView = styled.View`
   border-radius: 8px;
   align-items: center;
 `;
-export default function List({ data }) {
+export default function List({ data, handleDelete }) {
   return (
-    <View>
+    <PressableView onLongPress={() => handleDelete(data)}>
       <Type>
         <IconView type={data.type}>
           <Feather
@@ -38,6 +38,6 @@ export default function List({ data }) {
       <Text size={16} color="#000" bold>
         R$ {data.value}
       </Text>
-    </View>
+    </PressableView>
   );
 }

@@ -12,9 +12,7 @@ export default function AppRoutes() {
       screenOptions={{
         drawerStyle: {
           backgroundColor: "#202020",
-        },
-        drawerLabelStyle: {
-          fontWeight: "bold",
+          paddingTop: 20,
         },
         drawerActiveBackgroundColor: "#00b94a",
         drawerActiveTintColor: "#fff",

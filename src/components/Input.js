@@ -4,7 +4,7 @@ const TextInput = styled.TextInput.attrs({
   placeholderTextColor: "#909090",
 })`
   width: 100%;
-  height: 60px;
+  height: 50px;
   border-radius: 10px;
   background-color: ${(props) => (props.bgColor ? `${props.bgColor}` : "#000")};
   margin: 5px 0;

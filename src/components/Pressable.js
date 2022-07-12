@@ -1,7 +1,8 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 const Button = styled.Pressable`
   width: 100%;
+  height: 50px;
   padding: 10px;
   border-radius: 10px;
   background-color: ${(props) => (props.bgColor ? `${props.bgColor}` : props.theme.color.primary)};
