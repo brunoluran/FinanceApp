@@ -1,53 +1,87 @@
 import { Container, PressableView } from "./style";
 import { useTheme } from "styled-components";
-import { Keyboard } from "react-native";
-
+import { Keyboard, Alert } from "react-native";
 import { useState, useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../contexts/auth";
+import firebase from "../../firebase";
+import { format } from "date-fns";
 
-import MaskedInput from "../../components/MaskedInput";
 import Pressable from "../../components/Pressable";
 import Picker from "./Picker";
+import Input from "../../components/Input";
 
+import Text from "../../components/Text";
 export default function New() {
-  const { user, signOut } = useContext(AuthContext);
-  const theme = useTheme();
   const navigation = useNavigation();
 
-  const [value, setValue] = useState("");
-  const [type, setType] = useState(null);
+  const [valor, setValor] = useState("");
+  const [tipo, setTipo] = useState(null);
+  const { user: userUid } = useContext(AuthContext);
 
-  function handleAdd() {
+  function handleSubmit() {
     Keyboard.dismiss();
-    if (isNaN(parseFloat(value)) || type === null) {
-      alert("Preencha todos os campos.");
+    if (isNaN(parseFloat(valor)) || tipo === null) {
+      alert("Preencha todos os campos!");
       return;
     }
+
+    Alert.alert("Confirmando dados", `Tipo ${tipo} - Valor: ${parseFloat(valor)} `, [
+      {
+        text: "Cancelar",
+        style: "cancel",
+      },
+      {
+        text: "Continuar",
+        onPress: () => handleAdd(),
+      },
+    ]);
+  }
+
+  async function handleAdd() {
+    let uid = userUid.uid;
+
+    let key = await firebase.database().ref("transactions").child(uid).push().key;
+    await firebase
+      .database()
+      .ref("transactions")
+      .child(uid)
+      .child(key)
+      .set({
+        type: tipo,
+        value: parseFloat(valor),
+        date: format(new Date(), "dd/MM/yy"),
+      });
+
+    //Atualizar o nosso saldo
+    let user = firebase.database().ref("users").child(uid);
+    await user.once("value").then((snapshot) => {
+      let balance = parseFloat(snapshot.val().balance);
+
+      tipo === "despesa" ? (balance -= parseFloat(valor)) : (balance += parseFloat(valor));
+
+      user.child("balance").set(balance);
+    });
+    Keyboard.dismiss();
+    setValor("");
+    navigation.navigate("Home");
   }
 
   return (
     <PressableView onPress={() => Keyboard.dismiss()}>
       <Container>
-        <MaskedInput
-          placeholder={"Valor desejado"}
-          type={"money"}
-          options={{
-            precision: 2,
-            separator: ",",
-            delimiter: ".",
-            unit: "R$",
-            suffixUnit: "",
-          }}
-          value={value}
-          onChangeText={(e) => setValue(e)}
-          keyboardType="number-pad"
+        <Input
+          placeholder="Valor desejado"
+          keyboardType="numeric"
           returnKeyType="next"
           onSubmitEditing={() => Keyboard.dismiss()}
+          value={valor}
+          onChangeText={(text) => setValor(text)}
         />
-        <Picker value={type} onValueChange={(e) => setType(e)} />
 
-        <Pressable text={"Registrar"} onPress={handleAdd} />
+        <Picker onValueChange={(e) => setTipo(e)} />
+
+        <Pressable text={"Registrar"} onPress={handleSubmit} />
       </Container>
     </PressableView>
   );

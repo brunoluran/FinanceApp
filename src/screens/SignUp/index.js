@@ -15,13 +15,11 @@ export default function SignUp() {
   const navigation = useNavigation();
 
   const [name, setName] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [cpf, setCpf] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSignUp() {
-    signUp(email, password, name, cpf, birthDate);
+    signUp(email, password, name);
   }
 
   return (
@@ -35,25 +33,6 @@ export default function SignUp() {
             autoCorrect={false}
             autoCapitalize="words"
             keyboardType="email-address"
-          />
-
-          <MaskedInput
-            type={"datetime"}
-            options={{
-              format: "DD/MM/YYYY",
-            }}
-            value={birthDate}
-            onChangeText={(e) => setBirthDate(e)}
-            placeholder="Data de Nascimento"
-            keyboardType="number-pad"
-          />
-
-          <MaskedInput
-            type="cpf"
-            value={cpf}
-            onChangeText={(e) => setCpf(e)}
-            placeholder="CPF"
-            keyboardType="number-pad"
           />
 
           <Input
