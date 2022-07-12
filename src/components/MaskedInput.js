@@ -25,6 +25,8 @@ export default function MaskedInput({
   ref,
   error,
   placeholder,
+  onSubmitEditing,
+  returnKeyType,
 }) {
   return (
     <TextInput
@@ -39,6 +41,8 @@ export default function MaskedInput({
       ref={ref}
       error={error}
       placeholder={placeholder}
+      returnKeyType={returnKeyType}
+      onSubmitEditing={onSubmitEditing}
     />
   );
 }

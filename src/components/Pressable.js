@@ -7,7 +7,7 @@ const Button = styled.Pressable`
   background-color: ${(props) => (props.bgColor ? `${props.bgColor}` : props.theme.color.primary)};
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 10px;
 `;
 
 export const ButtonText = styled.Text`

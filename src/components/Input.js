@@ -5,7 +5,7 @@ const TextInput = styled.TextInput.attrs({
 })`
   width: 100%;
   border-radius: 10px;
-  background-color: #000;
+  background-color: ${(props) => (props.bgColor ? `${props.bgColor}` : '#000')};
   margin: 5px 0;
   padding: 10px;
   color: #fff;
@@ -20,6 +20,7 @@ export default function Input({
   autoCapitalize,
   keyboardType,
   secureTextEntry,
+  bgColor,
 }) {
   return (
     <TextInput
@@ -30,6 +31,7 @@ export default function Input({
       autoCapitalize={autoCapitalize}
       keyboardType={keyboardType}
       secureTextEntry={secureTextEntry}
+      bgColor={bgColor}
     />
   );
 }

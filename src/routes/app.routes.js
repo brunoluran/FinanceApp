@@ -1,17 +1,41 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Home from '../screens/Home';
+import New from '../screens/New';
+import Profile from '../screens/Profile';
 
-const AppStack = createNativeStackNavigator();
+const AppDrawer = createDrawerNavigator();
 
 export default function AppRoutes() {
   return (
-    <AppStack.Navigator
+    <AppDrawer.Navigator
       screenOptions={{
-        headerShown: false,
+        drawerStyle: {
+          backgroundColor: '#202020',
+        },
+        drawerLabelStyle: {
+          fontWeight: 'bold',
+        },
+        drawerActiveBackgroundColor: '#00b94a',
+        drawerActiveTintColor: '#fff',
+        drawerInactiveBackgroundColor: '#000',
+        drawerInactiveTintColor: '#bbb',
+        drawerItemStyle: {
+          marginVertical: 5,
+        },
+
+        headerStyle: {
+          backgroundColor: '#202020',
+        },
+        headerTintColor: '#fff',
+
+        headerBackTitleVisible: false,
+        headerTitle: '',
       }}
     >
-      <AppStack.Screen name='Home' component={Home} />
-    </AppStack.Navigator>
+      <AppDrawer.Screen name='Home' component={Home} />
+      <AppDrawer.Screen name='New' component={New} />
+      <AppDrawer.Screen name='Profile' component={Profile} />
+    </AppDrawer.Navigator>
   );
 }
